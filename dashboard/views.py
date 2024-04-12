@@ -10,26 +10,23 @@ from dateutil.relativedelta import relativedelta
 class TotalUserAPI(APIView):
 
     def get(self, request):
-        # year = request.GET.get('year', None)
-        # quarter = request.GET.get('quarter', None)
+        year = request.GET.get('year', None)
+        quarter = request.GET.get('quarter', None)
 
-        # if int(quarter) == 1:
-        #     qua = [1,2,3]
-        # elif int(quarter) == 2:
-        #     qua = [4,5,6]
-        # elif int(quarter) == 3:
-        #     qua = [7,8,9]
-        # elif int(quarter) == 4:
-        #     qua = [10,11,12]
+        if int(quarter) == 1:
+            qua = [1,2,3]
+        elif int(quarter) == 2:
+            qua = [4,5,6]
+        elif int(quarter) == 3:
+            qua = [7,8,9]
+        elif int(quarter) == 4:
+            qua = [10,11,12]
 
-        # user_qs = UsersInfo.objects.filter(cr_dt__year = int(year), cr_dt__month__in = qua)
-        # total_user = len(user_qs.values_list('userid'))
-
-        user_qs = UsersInfo.objects.filter(cr_dt__year = 2021)
+        user_qs = UsersInfo.objects.filter(cr_dt__year = int(year), cr_dt__month__in = qua)
         total_user = len(user_qs.values_list('userid'))
         
         response = {
-            'total_user':19,
+            'total_user':total_user,
         }
         return Response(response)
     
