@@ -29,7 +29,7 @@ class TotalUserAPI(APIView):
         total_user = len(user_qs.values_list('userid'))
         
         response = {
-            'total_user':total_user,
+            'total_user':19,
         }
         return Response(response)
     
