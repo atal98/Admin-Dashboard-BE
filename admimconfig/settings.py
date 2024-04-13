@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'dashboard',
     'corsheaders',
-    'dj_database_url',
+    # 'dj_database_url',
 ]
 
 MIDDLEWARE = [
