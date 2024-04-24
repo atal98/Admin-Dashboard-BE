@@ -84,13 +84,24 @@ WSGI_APPLICATION = 'admimconfig.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'deployadmindb',
+#         'USER': 'admindb',
+#         'PASSWORD': 'Lensmontage98',
+#         'HOST': 'admindb-azure.postgres.database.azure.com',   # Or the IP address where your PostgreSQL server is running
+#         'PORT': '5432',        # Default PostgreSQL port
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'deployadmindb',
-        'USER': 'admindb',
-        'PASSWORD': 'Lensmontage98',
-        'HOST': 'admindb-azure.postgres.database.azure.com',   # Or the IP address where your PostgreSQL server is running
+        'NAME': 'admindb',
+        'USER': 'postgres.dizncoqugdkkmpxzuqhc',
+        'PASSWORD': 'fPk2v(-7Hi7%+?_',
+        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',   # Or the IP address where your PostgreSQL server is running
         'PORT': '5432',        # Default PostgreSQL port
     }
 }
