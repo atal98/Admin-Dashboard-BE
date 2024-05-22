@@ -1,4 +1,8 @@
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -95,14 +99,25 @@ WSGI_APPLICATION = 'admimconfig.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'admindb',
+#         'USER': 'postgres.dizncoqugdkkmpxzuqhc',
+#         'PASSWORD': 'fPk2v(-7Hi7%+?_',
+#         'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',   # Or the IP address where your PostgreSQL server is running
+#         'PORT': '5432',        # Default PostgreSQL port
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'admindb',
-        'USER': 'postgres.dizncoqugdkkmpxzuqhc',
-        'PASSWORD': 'fPk2v(-7Hi7%+?_',
-        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',   # Or the IP address where your PostgreSQL server is running
-        'PORT': '5432',        # Default PostgreSQL port
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PWD"),
+        'HOST': os.getenv("DB_HOST"),   # Or the IP address where your PostgreSQL server is running
+        'PORT': os.getenv("DB_PORT"),        # Default PostgreSQL port
     }
 }
 

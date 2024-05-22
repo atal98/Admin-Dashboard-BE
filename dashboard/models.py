@@ -11,9 +11,9 @@ class UsersInfo(models.Model):
     gender = models.CharField(max_length=20, blank=True, null=True)
     cr_dt = models.DateTimeField(blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'users_info'
+    # class Meta:
+    #     managed = False
+    #     db_table = 'users_info'
 
 class CategoryOfProducts(models.Model):
     category_id = models.IntegerField(blank=True, null=True)
@@ -23,9 +23,9 @@ class CategoryOfProducts(models.Model):
     brand_name = models.CharField(max_length=100, blank=True, null=True)
     product_name = models.CharField(max_length=100, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'category_of_products'
+    # class Meta:
+    #     managed = False
+    #     db_table = 'category_of_products'
 
 class ProductInfo(models.Model):
     productid = models.OneToOneField('CategoryOfProducts', models.DO_NOTHING, primary_key=True, db_column='productid', blank=True, null=False)
@@ -37,9 +37,9 @@ class ProductInfo(models.Model):
     cost_making_or_buying = models.DecimalField(max_digits=16, decimal_places=6, blank=True, null=True)
     amount = models.DecimalField(max_digits=16, decimal_places=6, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'product_info'
+    # class Meta:
+    #     managed = False
+    #     db_table = 'product_info'
 
 class Leads(models.Model):
     year = models.CharField(max_length=4, blank=True, null=True)
@@ -50,9 +50,9 @@ class Leads(models.Model):
     social_media = models.BigIntegerField(blank=True, null=True)
     trade_show_leads = models.BigIntegerField(blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'leads'
+    # class Meta:
+    #     managed = False
+    #     db_table = 'leads'
 
 class SalesAndMarketing(models.Model):
     quarter = models.IntegerField(blank=True, null=True)
@@ -63,9 +63,9 @@ class SalesAndMarketing(models.Model):
     year = models.CharField(max_length=4, blank=True, null=True)
     total_expense = models.DecimalField(max_digits=16, decimal_places=6, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'sales_and_marketing'
+    # class Meta:
+    #     managed = False
+    #     db_table = 'sales_and_marketing'
 
 
 class Transaction(models.Model):
@@ -80,15 +80,15 @@ class Transaction(models.Model):
     status = models.CharField(max_length=20, blank=True, null=True)
     order_date = models.DateField(blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'transaction'
+    # class Meta:
+    #     managed = False
+    #     db_table = 'transaction'
 
 
 class TransactionInfo(models.Model):
     transactionid = models.OneToOneField('Transaction', models.DO_NOTHING, db_column='transactionid', primary_key=True)
     status = models.CharField(max_length=20, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'transaction_info'
+    # class Meta:
+    #     managed = False
+    #     db_table = 'transaction_info'
