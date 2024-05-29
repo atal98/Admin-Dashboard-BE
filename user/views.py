@@ -108,8 +108,8 @@ class TotalConversionRateAPI(APIView):
         social_media = leads_qs.aggregate(Sum('social_media'))
         trade_show_leads = leads_qs.aggregate(Sum('trade_show_leads'))
 
-        total_leads = ads_leads['ads_leads__sum'] + email_leads['email_leads__sum'] + refferal_leads['refferal_leads__sum'] + social_media['social_media__sum'] + trade_show_leads['trade_show_leads__sum']
-        total_user_conversin_rate = (customer_acquired / total_leads) * 100
+        total_leads = ads_leads['ads_leads__sum'] if ads_leads['ads_leads__sum'] else 0 + email_leads['email_leads__sum'] if email_leads['email_leads__sum'] else 0 + refferal_leads['refferal_leads__sum'] if refferal_leads['refferal_leads__sum'] else 0 + social_media['social_media__sum'] if social_media['social_media__sum'] else 0 + trade_show_leads['trade_show_leads__sum'] if trade_show_leads['trade_show_leads__sum'] else 0
+        total_user_conversin_rate = (customer_acquired / total_leads) * 100 if total_leads > 0 else 0
 
         response = {
             'total_user_conversin_rate' : round(total_user_conversin_rate,2)

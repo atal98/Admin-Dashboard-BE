@@ -3,9 +3,10 @@ from rest_framework.views import APIView
 from rest_framework import permissions, status
 from rest_framework.response import Response
 from .models import *
-from django.db.models import Sum
+from django.db.models import Sum, F
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
+import pandas as pd
 
 class TotalUserAPI(APIView):
 
@@ -98,22 +99,28 @@ class TotalGrossProfitAPI(APIView):
             qua = [10,11,12]
 
         transaction_qs = Transaction.objects.filter(order_date__year = int(year), order_date__month__in = qua, status = "Delivered")
-        product_info_qs = ProductInfo.objects.filter(productid__in = transaction_qs.values_list('productid',flat=True))
         amount = transaction_qs.aggregate(Sum('amount'))
-        total_revenue = amount['amount__sum'] or 0
-        cogs = 0
+        total_revenue = amount['amount__sum'] if amount['amount__sum'] else 0
+        # product_info_qs = ProductInfo.objects.filter(productid__in = transaction_qs.values_list('productid',flat=True))
+        # cogs = 0
 
-        for i in product_info_qs:
-            productid = i.productid
-            cogs_per_product = i.cost_making_or_buying
-            qty = transaction_qs.filter(productid = productid).aggregate(Sum('qty'))
-            total_qty_per_product = qty['qty__sum']
-            cogs += cogs_per_product*total_qty_per_product
+        # Annotate transactions with the cost_making_or_buying from ProductInfo
+        annotated_transactions = transaction_qs.annotate(cogs_amount=F('productid__productinfo__amount'))
+        cogs = annotated_transactions.aggregate(total_cogs=Sum(F('cogs_amount') * F('qty')))['total_cogs'] if annotated_transactions.aggregate(total_cogs=Sum(F('cogs_amount') * F('qty')))['total_cogs'] else 0
+
+        # for i in product_info_qs:
+        #     productid = i.productid
+        #     print(productid)
+        #     cogs_per_product = i.amount
+        #     qty = transaction_qs.filter(productid = productid).aggregate(Sum('qty'))
+        #     total_qty_per_product = qty['qty__sum']
+        #     cogs += cogs_per_product*total_qty_per_product
         
-        net_protfit = total_revenue - cogs
+        # print(cogs,cogss)
+        gross_profit = total_revenue - cogs
 
         response = {
-            'total_gross_profit':round(net_protfit,2) 
+            'total_gross_profit':round(gross_profit,2) 
             }
         return Response(response)
 

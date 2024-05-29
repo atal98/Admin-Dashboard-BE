@@ -82,7 +82,7 @@ class TotalAvgOrderValueAPI(APIView):
         total_order = len(transaction_qs.values_list('transactionid'))
         total_order_value = order_value['amount__sum'] or 0
 
-        avg_order_value = (total_order_value / total_order) * 100
+        avg_order_value = (total_order_value / total_order) * 100 if total_order > 0 else 0
 
         return Response({
             'total_avg_order_value': round(avg_order_value,2)
@@ -108,7 +108,7 @@ class TotalOrderReturnRateAPI(APIView):
         transaction_qs = Transaction.objects.filter(order_date__year = int(year), order_date__month__in = qua, status = "Delivered")
         total_order = len(transaction_qs.values_list('transactionid'))
         total_order_return = len(transaction_qs.filter(transactionid__in = order_return_id_list).values_list('transactionid'))
-        total_order_return_rate = (total_order_return / total_order) * 100
+        total_order_return_rate = (total_order_return / total_order) * 100 if total_order > 0 else 0
 
         response = {
             'total_order_return_rate' : round(total_order_return_rate,2)

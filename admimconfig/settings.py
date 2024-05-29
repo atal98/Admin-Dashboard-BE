@@ -30,8 +30,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'dashboard',
     'corsheaders',
+
+    #apps
+    'dashboard',
+    'order',
+    'stats',
+    'delivery',
+    'user',
     # 'dj_database_url',
 ]
 

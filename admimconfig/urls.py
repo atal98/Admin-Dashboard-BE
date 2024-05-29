@@ -8,5 +8,6 @@ urlpatterns = [
     path('api/user/', include('user.urls')),
     path('api/order/', include('order.urls')),
     path('api/delivery/', include('delivery.urls')),
+    path('api/stats/', include('stats.urls')),
     # path('',TemplateView.as_view(template_name='index.html')),
 ]
