@@ -10,7 +10,7 @@ from dateutil.relativedelta import relativedelta
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 class TotalOrderAPI(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
         year = request.GET.get('year', None)
@@ -35,7 +35,7 @@ class TotalOrderAPI(APIView):
     
 
 class TotalOrderValueAPI(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self,request):
 
@@ -64,7 +64,7 @@ class TotalOrderValueAPI(APIView):
 
 
 class TotalAvgOrderValueAPI(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self,request):
 
@@ -93,7 +93,7 @@ class TotalAvgOrderValueAPI(APIView):
         })
     
 class TotalOrderReturnRateAPI(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self,request):
 
@@ -123,7 +123,7 @@ class TotalOrderReturnRateAPI(APIView):
     
 
 class LastSixMonthsOrdersFulFillAPI(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     
     def get(self,request):
         year = request.GET.get('year', None)
@@ -162,7 +162,7 @@ class LastSixMonthsOrdersFulFillAPI(APIView):
     
 
 class OrderStatusDistributionAPI(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     
     def get(self,request):
         year = request.GET.get('year', None)
