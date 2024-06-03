@@ -7,9 +7,11 @@ from user.serializers import UsersTableSerializer
 from .models import *
 from django.db.models import Sum
 from datetime import datetime, timedelta
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 # Create your views here.
 class UserTableAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
 
@@ -33,6 +35,7 @@ class UserTableAPI(APIView):
 
 
 class UserSinigleAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, pk=None):
         
@@ -43,6 +46,7 @@ class UserSinigleAPI(APIView):
     
 
 class TotalRetentionRateAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
 
@@ -74,6 +78,7 @@ class TotalRetentionRateAPI(APIView):
 
 
 class TotalChurnRateAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
 
@@ -82,6 +87,7 @@ class TotalChurnRateAPI(APIView):
         })
     
 class TotalConversionRateAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
 

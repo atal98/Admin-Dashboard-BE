@@ -6,9 +6,11 @@ from dashboard.models import *
 from .models import *
 from django.db.models import Sum
 from datetime import datetime, timedelta
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 # Create your views here.
 class DeliveryInfoAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
 

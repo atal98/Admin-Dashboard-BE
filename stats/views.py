@@ -8,9 +8,11 @@ from django.db.models import Sum,F
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 import calendar
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 # Create your views here.
 class CACAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
         year = request.GET.get('year', None)
@@ -40,6 +42,7 @@ class CACAPI(APIView):
     
 
 class SalesExpenseVSCustomerAcqVSTotalLeadsAPI(APIView):
+    permission_classes = [IsAuthenticated]
     
     def get(self,request):
         year = request.GET.get('year', None)
@@ -79,6 +82,7 @@ class SalesExpenseVSCustomerAcqVSTotalLeadsAPI(APIView):
         return Response(response)
 
 class SalesExpenseBreakDownAPI(APIView):
+    permission_classes = [IsAuthenticated]
     
     def get(self,request):
         year = request.GET.get('year', None)
@@ -117,6 +121,8 @@ class SalesExpenseBreakDownAPI(APIView):
 
 
 class NetProfitBreakdownAPI(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self,request):
         year = request.GET.get('year', None)
         quarter = request.GET.get('quarter', None)
@@ -204,6 +210,7 @@ class NetProfitBreakdownAPI(APIView):
         return Response(response)
     
 class GrowthRateAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         year = request.GET.get('year', None)

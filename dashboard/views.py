@@ -7,8 +7,10 @@ from django.db.models import Sum, F
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 import pandas as pd
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 class TotalUserAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         year = request.GET.get('year', None)
@@ -33,6 +35,7 @@ class TotalUserAPI(APIView):
     
 
 class TotalOrderFulfillAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         year = request.GET.get('year', None)
@@ -58,6 +61,7 @@ class TotalOrderFulfillAPI(APIView):
     
 
 class TotalRevenueAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         year = request.GET.get('year', None)
@@ -84,6 +88,7 @@ class TotalRevenueAPI(APIView):
     
 
 class TotalGrossProfitAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         year = request.GET.get('year', None)
@@ -126,6 +131,7 @@ class TotalGrossProfitAPI(APIView):
 
 
 class LastSixMonthsRevenueAPI(APIView):
+    permission_classes = [IsAuthenticated]
     
     def get(self,request):
         year = request.GET.get('year', None)
@@ -161,6 +167,7 @@ class LastSixMonthsRevenueAPI(APIView):
 
 
 class TargetAPI(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self,request):
 
